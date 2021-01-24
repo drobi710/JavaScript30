@@ -59,6 +59,31 @@
 
 <script>
 
+  function playSound(e) {
+    // inside the function we want to find out if there is an audio object and use an attribut selector to find if the data-key value equal to the keyCode that you have pressed 
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    // selects an element with the key class with the corresponding keyCode
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    if(!audio) return; //stops the function from running all together
+    audio.currentTime = 0; // rewind to the start of the audio
+    // play the corresponding audio when data-key and keyCode pressed match
+    audio.play();
+    //access the class list in css and add it to the key element to initiate the class .playing
+    key.classList.add('playing');
+  };
+
+function removeTransition(e) {
+  if(e.propertyName !== 'transform') return; // skips the transition if the propertyName(got from console.log(e)) is not a transform
+  this.classList.remove('playing'); //this removes the playing css class of the key(this) when you run the function
+}
+
+  // for all the keys
+  const keys = document.querySelectorAll('.key');
+  // add an event listener to all keys by using forEach that loops through each key and adds the event listiener that listens for transisitionend and when that ends we run a function called remove Transition
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  // we are listenining for the 'keydown' event which will run the function playSound .keyCode is the number associated with the keydown event when you press a key
+  window.addEventListener('keydown', playSound); 
+
 </script>
 
 
