@@ -80,7 +80,7 @@ function removeTransition(e) {
   // for all the keys
   const keys = document.querySelectorAll('.key');
   // add an event listener to all keys by using forEach that loops through each key and adds the event listiener that listens for transisitionend and when that ends we run a function called remove Transition
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  // keys.forEach(key => key.addEventListener('transitionend', removeTransition));
   // we are listenining for the 'keydown' event which will run the function playSound .keyCode is the number associated with the keydown event when you press a key
   window.addEventListener('keydown', playSound); 
 
